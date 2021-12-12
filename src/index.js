@@ -13,8 +13,12 @@ const path = require('path');
 app.use(express.static('public'));
 
 app.get('/', (req, res) => {
-    console.log(new Date());
-    console.log(new Date(new Date().getTime()+8*3600000).toISOString());
+    console.log("nowtime(UTC+8):" + new Date(new Date().getTime()+8*3600000).toISOString());
+    console.log(new Date().toISOString());
+    console.log(Date());
+    console.log(new Date().toUTCString());
+    console.log(Date().toLocaleString());
+    console.log(Date().toLocaleString('zh-tw'));
     return res.sendFile(path.join(__dirname, '../public/client.html'));
 });
     
