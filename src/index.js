@@ -11,14 +11,12 @@ const io = new Server(httpServer, { /* options */ });
 const path = require('path');
 
 const uri = process.env.MONGODB_URI;
-const { MongoClient } = require('mongodb');
-const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
-client.connect(err => {
-  const collection = client.db("test").collection("devices");
-  console.log("現在是怎樣?");
-  // perform actions on the collection object
-  client.close();
-});
+var MongoClient = require('mongodb').MongoClient;
+MongoClient.connect(uri, function(err, db) {
+    if (err) throw err;
+    console.log("Database created!");
+    db.close();
+  });
 
 app.use(express.static('public'));
 
