@@ -1,10 +1,8 @@
-const fs = require("fs");
+const port = process.env.PORT || 3000;
 
-const port = process.env.PORT || 5000;
-
-const express = require("express");
-const { createServer } = require("http");
-const { Server } = require("socket.io");
+const express = require('express');
+const { createServer } = require('http');
+const { Server } = require('socket.io');
 
 const app = express();
 const httpServer = createServer(app);
@@ -22,8 +20,8 @@ app.get('/', (req, res) => {
     return res.sendFile(path.join(__dirname, '../public/client.html'));
 });
     
-io.on("connection", (socket) => {
-    console.log("server connect!!");
+io.on('connection', (socket) => {
+    console.log('server connect!!');
     console.log(socket.id); // x8WIv7-mJelg7on_ALbx
     // ...
 });
