@@ -12,14 +12,6 @@ const io = new Server(httpServer, { /* options */ });
 
 const path = require('path');
 
-let key_data = fs.readFileSync('key.json','utf8');
-const key_json = JSON.parse(key_data);
-const mongodbkey = key_json.mongodbkey;
-
-var mongoClient = require("mongodb").MongoClient;
-
-
-
 app.use(express.static('public'));
 
 app.get('/', (req, res) => {
