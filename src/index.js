@@ -14,9 +14,7 @@ app.use(express.static('public'));
 
 app.get('/', (req, res) => {
     console.log(new Date());
-    console.log(new Date().toUTCString());
-    console.log(new Date().toLocaleString());
-    console.log(new Date().toISOString());
+    console.lognew Date(new Date().getTime()+8*3600000).toISOString(););
     return res.sendFile(path.join(__dirname, '../public/client.html'));
 });
     
