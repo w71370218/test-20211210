@@ -13,10 +13,10 @@ const path = require('path');
 app.use(express.static('public'));
 
 app.get('/', (req, res) => {
-    console.log(Date());
+    console.log(new Date());
     console.log(new Date().toUTCString());
-    console.log(Date().toLocaleString());
-    console.log(Date().toLocaleString('zh-tw'));
+    console.log(new Date().toLocaleString());
+    console.log(new Date().toISOString());
     return res.sendFile(path.join(__dirname, '../public/client.html'));
 });
     
