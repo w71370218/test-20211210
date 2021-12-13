@@ -14,7 +14,16 @@ const uri = process.env.MONGODB_URI;
 var MongoClient = require('mongodb').MongoClient;
 MongoClient.connect(uri, function(err, db) {
     if (err) throw err;
-    console.log("Database created!");
+    console.log("mongodb connected!");
+    /*
+    var dbo = db.db("mydb");
+    var myobj = { id: 1, username:"admin", password:"admin", nickname:"admin", class:"admin", type: "web", signInTime : new Date().toLocaleString('zh-tw'), lastLoginTime: new Date().toLocaleString('zh-tw'), status:"nomal", friends:{}};
+    dbo.collection("users").insertOne(myobj, function(err, res) {
+        if (err) throw err;
+        console.log("1 document inserted");
+        db.close();
+    });
+    */
     db.close();
   });
 
@@ -32,4 +41,3 @@ io.on('connection', (socket) => {
 });
 
 httpServer.listen(port);
-
