@@ -47,7 +47,6 @@ io.on('connection', (socket) => {
     /* 傳送 */
     socket.emit('online_users', online_users);
     socket.broadcast.emit('newPlayer', online_users[socket.id]);
-    //console.log(online_users);
 
     /* 離線 */
     socket.on('disconnect', function() {

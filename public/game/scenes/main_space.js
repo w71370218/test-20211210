@@ -73,7 +73,6 @@ const main_space = {
                     addOtherPlayers(self, characters[id]);
                 }
             });
-            //console.log(self.otherPlayers);
         });
         this.socket.on('newPlayer', function (playerInfo) {
             addOtherPlayers(self, playerInfo);
@@ -99,7 +98,6 @@ const main_space = {
         
 
         var pointer = this.input.activePointer;
-        //console.log(this);
         
         if (this.ch){
             //console.log(pointer.event);
