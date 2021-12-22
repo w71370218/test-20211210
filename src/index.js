@@ -10,12 +10,12 @@ const io = new Server(httpServer, { /* options */ });
 
 const path = require('path');
 
+var online_users = {};
+
 const uri = process.env.MONGODB_URI;
 var MongoClient = require('mongodb').MongoClient;
 //const { userInfo } = require('os');
 //const { socket } = require('../public/game/scenes/main_space.js');
-
-var online_users = {};
 
 MongoClient.connect(uri, function(err, db) {
     if (err) throw err;
