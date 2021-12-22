@@ -12,6 +12,11 @@ const path = require('path');
 
 const uri = process.env.MONGODB_URI;
 var MongoClient = require('mongodb').MongoClient;
+//const { userInfo } = require('os');
+//const { socket } = require('../public/game/scenes/main_space.js');
+
+var online_users = {};
+
 MongoClient.connect(uri, function(err, db) {
     if (err) throw err;
     console.log("mongodb connected!");
@@ -35,9 +40,30 @@ app.get('/', (req, res) => {
 });
     
 io.on('connection', (socket) => {
-    console.log('server connect!!');
-    console.log(socket.id); // x8WIv7-mJelg7on_ALbx
-    // ...
+    
+    var character = {'id':socket.id, 'x': 460, 'y': 490};
+    //console.log(socket.id+' connect!'); // x8WIv7-mJelg7on_ALbx
+    online_users[socket.id] = character;
+    /* 傳送 */
+    socket.emit('online_users', online_users);
+    socket.broadcast.emit('newPlayer', online_users[socket.id]);
+    //console.log(online_users);
+
+    /* 離線 */
+    socket.on('disconnect', function() {
+        console.log('Got disconnect!');
+        delete online_users[socket.id];
+        io.emit('diconnect',socket.id);
+     });
+     
+     socket.on('playerMovement', function (movementData) {
+        online_users[socket.id].x = movementData.x;
+        online_users[socket.id].y = movementData.y;
+        // emit a message to all players about the player that moved
+        socket.broadcast.emit('playerMoved', online_users[socket.id]);
+        //console.log(online_users);
+    });
 });
+
 
 httpServer.listen(port);
