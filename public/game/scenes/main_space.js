@@ -77,7 +77,7 @@ const main_space = {
         this.socket.on('newPlayer', function (playerInfo) {
             addOtherPlayers(self, playerInfo);
           });
-        this.socket.on('disconnect', function (id) {
+        this.socket.on('disconnected', function (id) {
             self.otherPlayers.getChildren().forEach(function (otherPlayer) {
                 if (id === otherPlayer.id) {
                     otherPlayer.destroy();
@@ -115,82 +115,84 @@ const main_space = {
                     }
                 }
             }
-            
-            if (m_x-ch.x!=0) {
-                if(m_x-ch.x>0) {
-                    if (m_x-ch.x>10){
-                        if (movable(ch.x +5, ch.y)){
-                            ch.x += 5;
-                            this.socket.emit('playerMovement', { x: ch.x, y: ch.y });
-                        }
-                    } else if ((m_x-ch.x<=10) && (m_x-ch.x)%5==0) {
-                        if (movable(ch.x +5, ch.y)){
-                            ch.x += 5;
-                            this.socket.emit('playerMovement', { x: ch.x, y: ch.y });
+            if (movable(m_x, m_y)){
+                if (m_x-ch.x!=0) {
+                    if(m_x-ch.x>0) {
+                        if (m_x-ch.x>10){
+                            if (movable(ch.x +5, ch.y)){
+                                ch.x += 5;
+                                this.socket.emit('playerMovement', { x: ch.x, y: ch.y });
+                            }
+                        } else if ((m_x-ch.x<=10) && (m_x-ch.x)%5==0) {
+                            if (movable(ch.x +5, ch.y)){
+                                ch.x += 5;
+                                this.socket.emit('playerMovement', { x: ch.x, y: ch.y });
+                            }
+                        } else {
+                            if (movable(ch.x +1, ch.y)){
+                                ch.x += 1;
+                                this.socket.emit('playerMovement', { x: ch.x, y: ch.y });
+                            }
                         }
                     } else {
-                        if (movable(ch.x +1, ch.y)){
-                            ch.x += 1;
-                            this.socket.emit('playerMovement', { x: ch.x, y: ch.y });
+                        if (m_x-ch.x<-10){
+                            if (movable(ch.x -5, ch.y)){
+                                ch.x -= 5;
+                                this.socket.emit('playerMovement', { x: ch.x, y: ch.y });
+                            }
+                        } else if ((m_x-ch.x>=-10) && (m_x-ch.x)%5==0) {
+                            if (movable(ch.x -5, ch.y)){
+                                ch.x -= 5;
+                                this.socket.emit('playerMovement', { x: ch.x, y: ch.y });
+                            }
+                        } else {
+                            if (movable(ch.x -1, ch.y)){
+                                ch.x -= 1;
+                                this.socket.emit('playerMovement', { x: ch.x, y: ch.y });
+                            }
                         }
                     }
-                } else {
-                    if (m_x-ch.x<-10){
-                        if (movable(ch.x -5, ch.y)){
-                            ch.x -= 5;
-                            this.socket.emit('playerMovement', { x: ch.x, y: ch.y });
-                        }
-                    } else if ((m_x-ch.x>=-10) && (m_x-ch.x)%5==0) {
-                        if (movable(ch.x -5, ch.y)){
-                            ch.x -= 5;
-                            this.socket.emit('playerMovement', { x: ch.x, y: ch.y });
+                }
+                if (m_y-ch.y!=0) {
+                    if(m_y-ch.y>0) {
+                        if (m_y-ch.y>10){
+                            if (movable(ch.x, ch.y +5)){
+                                ch.y += 5;
+                                this.socket.emit('playerMovement', { x: ch.x, y: ch.y });
+                            }
+                        } else if ((m_y-ch.y<=10) && (m_y-ch.y)%5==0) {
+                            if (movable(ch.x, ch.y +5)){
+                                ch.y += 5;
+                                this.socket.emit('playerMovement', { x: ch.x, y: ch.y });
+                            }
+                        } else {
+                            if (movable(ch.x, ch.y +1)){
+                                ch.y += 1;
+                                this.socket.emit('playerMovement', { x: ch.x, y: ch.y });
+                            }
                         }
                     } else {
-                        if (movable(ch.x -1, ch.y)){
-                            ch.x -= 1;
-                            this.socket.emit('playerMovement', { x: ch.x, y: ch.y });
+                        if (m_y-ch.y<-10)
+                        {
+                            if (movable(ch.x, ch.y -5)){
+                                ch.y -= 5;
+                                this.socket.emit('playerMovement', { x: ch.x, y: ch.y });
+                            }
+                        } else if ((m_y-ch.y>=-10) && (m_y-ch.y)%5==0) {
+                            if (movable(ch.x, ch.y -5)){
+                                ch.y -= 5;
+                                this.socket.emit('playerMovement', { x: ch.x, y: ch.y });
+                            }
+                        } else {
+                            if (movable(ch.x, ch.y -1)){
+                                ch.y -= 1;
+                                this.socket.emit('playerMovement', { x: ch.x, y: ch.y });
+                            }
                         }
                     }
                 }
             }
-            if (m_y-ch.y!=0) {
-                if(m_y-ch.y>0) {
-                    if (m_y-ch.y>10){
-                        if (movable(ch.x, ch.y +5)){
-                            ch.y += 5;
-                            this.socket.emit('playerMovement', { x: ch.x, y: ch.y });
-                        }
-                    } else if ((m_y-ch.y<=10) && (m_y-ch.y)%5==0) {
-                        if (movable(ch.x, ch.y +5)){
-                            ch.y += 5;
-                            this.socket.emit('playerMovement', { x: ch.x, y: ch.y });
-                        }
-                    } else {
-                        if (movable(ch.x, ch.y +1)){
-                            ch.y += 1;
-                            this.socket.emit('playerMovement', { x: ch.x, y: ch.y });
-                        }
-                    }
-                } else {
-                    if (m_y-ch.y<-10)
-                    {
-                        if (movable(ch.x, ch.y -5)){
-                            ch.y -= 5;
-                            this.socket.emit('playerMovement', { x: ch.x, y: ch.y });
-                        }
-                    } else if ((m_y-ch.y>=-10) && (m_y-ch.y)%5==0) {
-                        if (movable(ch.x, ch.y -5)){
-                            ch.y -= 5;
-                            this.socket.emit('playerMovement', { x: ch.x, y: ch.y });
-                        }
-                    } else {
-                        if (movable(ch.x, ch.y -1)){
-                            ch.y -= 1;
-                            this.socket.emit('playerMovement', { x: ch.x, y: ch.y });
-                        }
-                    }
-                }
-            }
+            //this.physics.world.wrap(this.ch);
         }
         
     }
@@ -210,11 +212,11 @@ function movable(x, y, A_x = movable_range_A_x , A_y = movable_range_A_y, B_x = 
 }
 
 function addPlayer(self, playerInfo) {
-    self.ch = self.physics.add.sprite(playerInfo.x, playerInfo.y, "character").setOrigin(0.5,0.7);
+    self.ch = self.physics.add.image(playerInfo.x, playerInfo.y, "character").setOrigin(0.5,0.7);
     return self.ch;
 }
 function addOtherPlayers(self, playerInfo) {
-    const otherPlayer = self.physics.add.sprite(playerInfo.x, playerInfo.y, "character").setOrigin(0.5,0.7);
+    const otherPlayer = self.physics.add.image(playerInfo.x, playerInfo.y, "character").setOrigin(0.5,0.7);
     otherPlayer.id = playerInfo.id;
     self.otherPlayers.add(otherPlayer);
 }

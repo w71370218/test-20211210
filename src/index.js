@@ -50,9 +50,9 @@ io.on('connection', (socket) => {
 
     /* 離線 */
     socket.on('disconnect', function() {
-        console.log('Got disconnect!');
+        console.log(socket.id + 'disconnected!');
         delete online_users[socket.id];
-        io.emit('diconnect',socket.id);
+        io.emit('disconnected', socket.id);
      });
      
      socket.on('playerMovement', function (movementData) {
