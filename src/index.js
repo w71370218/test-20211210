@@ -10,7 +10,7 @@ const io = new Server(httpServer, { /* options */ });
 
 const path = require('path');
 
-var current_users = {};
+var currentUsers = {};
 
 const uri = process.env.MONGODB_URI;
 var MongoClient = require('mongodb').MongoClient;
@@ -43,23 +43,23 @@ io.on('connection', (socket) => {
     
     var character = {'id':socket.id, 'x': 460, 'y': 490};
     //console.log(socket.id+' connect!'); // x8WIv7-mJelg7on_ALbx
-    current_users[socket.id] = character;
+    currentUsers[socket.id] = character;
     /* 傳送 */
-    socket.emit('online_users', current_users);
-    socket.broadcast.emit('newPlayer', current_users[socket.id]);
+    socket.emit('online_users', currentUsers);
+    socket.broadcast.emit('newPlayer', currentUsers[socket.id]);
 
     /* 離線 */
     socket.on('disconnect', function() {
         console.log(socket.id + 'disconnected!');
-        delete current_users[socket.id];
+        delete currentUsers[socket.id];
         io.emit('disconnected', socket.id);
      });
      
      socket.on('playerMovement', function (movementData) {
-        current_users[socket.id].x = movementData.x;
-        current_users[socket.id].y = movementData.y;
+        currentUsers[socket.id].x = movementData.x;
+        currentUsers[socket.id].y = movementData.y;
         // emit a message to all players about the player that moved
-        socket.broadcast.emit('playerMoved', current_users[socket.id]);
+        socket.broadcast.emit('playerMoved', currentUsers[socket.id]);
         //console.log(online_users);
     });
 });
