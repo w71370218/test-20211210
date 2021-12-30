@@ -28,7 +28,7 @@ MongoClient.connect(uri, function(err, db) {
         socket.on('login', function (loginData) {
             dbo.collection("users").find({username: loginData.username}).toArray(function(er, result) {
                 if (er) {
-                    socket.emit('loginResponse', "抱歉 伺服器目前有些錯誤 請稍後再重試1");
+                    socket.emit('loginResponse', "抱歉 伺服器目前有些錯誤 請稍後再重試");
                     console.log(er);
                 };
                 if (result.length != 0){
@@ -38,7 +38,7 @@ MongoClient.connect(uri, function(err, db) {
                         result[0]['lastLoginTime'] = newLoginTime;
                         dbo.collection("users").updateOne({username: loginData.username}, {$set: {lastLoginTime: newLoginTime}}, function(e) {
                             if (e) {
-                                socket.emit('loginResponse', "抱歉 伺服器目前有些錯誤 請稍後再重試2");
+                                socket.emit('loginResponse', "抱歉 伺服器目前有些錯誤 請稍後再重試");
                                 console.log(e);
                             };
                             //console.log("1 document updated");
@@ -48,7 +48,7 @@ MongoClient.connect(uri, function(err, db) {
                     
                         dbo.collection("clothing").find().toArray(function(error, clothing) {
                             if (error) {
-                                socket.emit('loginResponse', "抱歉 伺服器目前有些錯誤 請稍後再重試3");
+                                socket.emit('loginResponse', "抱歉 伺服器目前有些錯誤 請稍後再重試");
                                 console.log(error);
                             };
                             /* 前提user的clothing裡要有key
