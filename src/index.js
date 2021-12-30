@@ -16,9 +16,7 @@ const uri = process.env.MONGODB_URI;
 var MongoClient = require('mongodb').MongoClient;
 //const { userInfo } = require('os');
 //const { socket } = require('../public/game/scenes/main_space.js');
-var csurf = require('csurf')
 var character;
-var upda = {};
 
 MongoClient.connect(uri, function(err, db) {
     if (err) throw err;
@@ -28,30 +26,30 @@ MongoClient.connect(uri, function(err, db) {
 
     io.on('connection', (socket) => {
         socket.on('login', function (loginData) {
-            dbo.collection("users").find({username: loginData.username}).toArray(function(err, result) {
-                if (err) {
+            dbo.collection("users").find({username: loginData.username}).toArray(function(er, result) {
+                if (er) {
                     socket.emit('loginResponse', "抱歉 伺服器目前有些錯誤 請稍後再重試");
-                    console.log(err);
+                    console.log(er);
                 };
                 if (result.length != 0){
                     if (result[0]['password'] === loginData.password){
                         //login correct
                         var newLoginTime = new Date();
                         result[0]['lastLoginTime'] = newLoginTime;
-                        dbo.collection("users").updateOne({username: loginData.username}, {$set: {lastLoginTime: newLoginTime}}, function(err, res) {
-                            if (err) {
+                        dbo.collection("users").updateOne({username: loginData.username}, {$set: {lastLoginTime: newLoginTime}}, function(e) {
+                            if (e) {
                                 socket.emit('loginResponse', "抱歉 伺服器目前有些錯誤 請稍後再重試");
-                                console.log(err);
+                                console.log(e);
                             };
                             //console.log("1 document updated");
                             delete result[0]['password']; //delete some Sensitive information
                             character = result[0];
                           });
                     
-                        dbo.collection("clothing").find().toArray(function(err, clothing) {
-                            if (err) {
+                        dbo.collection("clothing").find().toArray(function(error, clothing) {
+                            if (error) {
                                 socket.emit('loginResponse', "抱歉 伺服器目前有些錯誤 請稍後再重試");
-                                console.log(err);
+                                console.log(error);
                             };
                             /* 前提user的clothing裡要有key
                             for (var key in result[0]['clothing']){
