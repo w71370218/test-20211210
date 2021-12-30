@@ -34,7 +34,7 @@ MongoClient.connect(uri, function(err, db) {
                 if (result.length != 0){
                     if (result[0]['password'] === loginData.password){
                         //login correct
-                        var newLoginTime = new Date();
+                        var newLoginTime = new Date().toString();
                         result[0]['lastLoginTime'] = newLoginTime;
                         dbo.collection("users").updateOne({username: loginData.username}, {$set: {lastLoginTime: newLoginTime}}, function(e) {
                             if (e) {
