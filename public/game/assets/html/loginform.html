@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .login {
+            background-color:cornsilk;
+            height: 500px;
+            width: 720px;
+        }
+        .accountDIV {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            margin: auto;
+        }
+        .account {
+            height:  160px;
+            width:  160px;
+            position: relative;
+            background-size: cover;
+            border-radius: 5px;
+            margin: 10px;
+        }
+        .remove {
+            font-size: 30px;
+            margin: 4px;
+            
+        }
+        .loginDIV {
+            text-align: center;
+            margin: 10px;
+        }
+        .loginfield {
+            margin-left: calc(50%/2);
+            text-align:left;
+            margin-top: 0.5px;
+        }
+        .login-button {
+            margin-left: calc(25%/2);
+            text-align:center;
+        }
+        .OAuthDIV {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            margin: auto;
+        }
+        a {
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="login">
+        <div class="accountDIV">
+            <a href="">
+                <div class="account" style="background-image:url('https://i.pinimg.com/564x/8f/cd/a8/8fcda8819f83d06f108fb770f5c6e4bb.jpg')">
+                    <a href="#">
+                        <i class="material-icons remove">highlight_off</i>
+                    </a>
+                </div>
+            </a>
+            
+            <a href="#">
+                <div class="account" style="background-image:url('https://i.pinimg.com/originals/d1/7d/e1/d17de177f36718c749d89b6a4e9831e6.jpg')">
+                    <a href="#">
+                        <i class="material-icons remove">highlight_off</i>
+                    </a>
+                </div>
+            </a>
+            <a href="#">
+                <div class="account" style="background-image:url('https://i.pinimg.com/564x/8f/cd/a8/8fcda8819f83d06f108fb770f5c6e4bb.jpg')">
+                    <a href="#">
+                        <i class="material-icons remove">highlight_off</i>
+                    </a>
+                </div>
+            </a>
+        </div>
+        <div class="loginDIV">
+            <label>登入</label>
+            
+                <div class="loginfield row g-3 align-items-center">
+                    <input type="hidden" name="_csrf" value="{{csrfToken}}">
+                    <div class="col-auto">
+                        <label>帳號</label>
+                    </div>
+                    <div class="col-auto">
+                        <input type="text" id="username" name="username" class="form-control">
+                    </div>
+                </div>
+                <div class="loginfield row g-3 align-items-center">
+                    <div class="col-auto">
+                        <label>密碼</label>
+                    </div>
+                    <div class="col-auto">
+                        <input type="password" id="password" name="password" class="form-control">
+                    </div>
+                    <div class="col-auto">
+                        <a href="#" class="forgot" name="forgetpassword">忘記密碼?</a>
+                    </div>
+                </div>
+                <br>
+                <div class="login-button">
+                    <input type="submit" value="登入" name="loginButton" class="btn btn-primary">
+                    <a href="#" class="signup" name="signup">註冊帳號</a>
+                </div>
+            
+            
+            
+        </div>
+        
+        <div class="OAuthDIV">
+            <label>快速登入</label>
+            <div></div>
+        </div>
+
+    </div>
+    
+</body>
+</html>

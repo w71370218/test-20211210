@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .signup {
+            background-color:cornsilk;
+            height: 500px;
+            width: 720px;
+        }
+        .accountDIV {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            margin: auto;
+        }
+        .account {
+            height:  160px;
+            width:  160px;
+            position: relative;
+            background-size: cover;
+            border-radius: 5px;
+            margin: 10px;
+        }
+        .remove {
+            font-size: 30px;
+            margin: 4px;
+            
+        }
+        .signupDIV {
+            text-align: center;
+            margin: 10px;
+        }
+        .signupfield {
+            margin-left: calc(50%/2);
+            text-align:left;
+            margin-top: 0.5px;
+        }
+        .signup-button {
+            margin-left: calc(25%/2);
+            text-align:center;
+        }
+        .OAuthDIV {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            margin: auto;
+        }
+        a {
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="signup">
+        <div class="accountDIV">
+            <a href="">
+                <div class="account" style="background-image:url('https://i.pinimg.com/564x/8f/cd/a8/8fcda8819f83d06f108fb770f5c6e4bb.jpg')">
+                    <a href="#">
+                        <i class="material-icons remove">highlight_off</i>
+                    </a>
+                </div>
+            </a>
+            
+            <a href="#">
+                <div class="account" style="background-image:url('https://i.pinimg.com/originals/d1/7d/e1/d17de177f36718c749d89b6a4e9831e6.jpg')">
+                    <a href="#">
+                        <i class="material-icons remove">highlight_off</i>
+                    </a>
+                </div>
+            </a>
+            <a href="#">
+                <div class="account" style="background-image:url('https://i.pinimg.com/564x/8f/cd/a8/8fcda8819f83d06f108fb770f5c6e4bb.jpg')">
+                    <a href="#">
+                        <i class="material-icons remove">highlight_off</i>
+                    </a>
+                </div>
+            </a>
+        </div>
+        <div class="signupDIV">
+            <label>註冊</label>
+            <div class="signupfield row g-3 align-items-center">
+                <div class="col-auto">
+                    <label>帳號</label>
+                </div>
+                <div class="col-auto">
+                    <input type="text" id="username" name="username" class="form-control">
+                </div>
+            </div>
+            <div class="signupfield row g-3 align-items-center">
+                <div class="col-auto">
+                    <label>密碼</label>
+                </div>
+                <div class="col-auto">
+                    <input type="password" id="password" name="password" class="form-control">
+                </div>
+            </div>
+            <div class="signupfield row g-3 align-items-center">
+                <div class="col-auto">
+                    <label>電子信箱</label>
+                </div>
+                <div class="col-auto">
+                    <input type="email" id="email" name="email" class="form-control">
+                </div>
+            </div>
+            <br>
+            <div class="signup-button">
+                <input type="submit" value="登入" name="signupButton" class="btn btn-primary">
+                <a href="#" class="login" name="login">登入帳號</a>
+            </div>
+            
+        </div>
+
+    </div>
+</body>
+</html>
