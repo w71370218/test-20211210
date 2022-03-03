@@ -52,7 +52,9 @@ const gameStart = {
         singInButton = this.add.rectangle(200+234+button_w, h-100, button_w, button_h, button_color).setOrigin(0,0);
         this.add.text(200+234 +button_w+ button_w/2, h-100 + button_h/2, '註冊', { fill: '#fff', fontSize: '30px' }).setOrigin(0.5,0.5);
         singInButton.setInteractive();
-        singInButton.on('pointerdown', () => { console.log('pointerdown'); });
+        singInButton.on('pointerdown', () => { 
+            this.scene.start('signup');
+         });
 
         //var element = this.add.dom(w/2,h/2).createFromCache('loginform');
     },

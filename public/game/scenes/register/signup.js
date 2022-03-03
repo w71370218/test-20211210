@@ -30,6 +30,12 @@ const signup = {
             if (event.target.name === 'login'){
                 self.scene.start('login');
             }
+            if (event.target.name === 'signupButton') {
+                var inputUsername = this.getChildByName('username').value;
+                var inputPassword = this.getChildByName('password').value;
+                var inputEmail = this.getChildByName('email').value;
+                self.socket.emit('signup', { 'username': inputUsername , 'password': inputPassword, 'email': inputEmail });
+            }
         });
     },
     update: function(){
